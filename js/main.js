@@ -2,24 +2,24 @@
 
 var photoArr = [];
 
-for (var i = 0; i <26; i++)  {
+for (var i = 0; i < 26; i++) {
   photoArr.push({
-      url: 'photos/'+ ((Math.round((Math.random() * 24))) + 1) +'.jpg',
-      description: 'Все хорошо',
-      likes: Math.round((Math.random() * 25)),
-      comments: [{
-        avatar: "img/avatar-2.svg",
-        message: "В целом всё неплохо. Но не всё.",
-        name: "Артем"
-      },
-      {
-        avatar: "img/avatar-6.svg",
-        message: "В целом всё неплохо. Но не всё.Лососни тунца.",
-        name: "Артем"
-      }
-    ]
+    url: 'photos/' + ((Math.round((Math.random() * 24))) + 1) + '.jpg',
+    description: 'Все хорошо',
+    likes: Math.round((Math.random() * 25)),
+    comments: [{
+      avatar: 'img/avatar-2.svg',
+      message: 'В целом всё неплохо. Но не всё.',
+      name: 'Артем'
+    },
+    {
+      avatar: 'img/avatar-6.svg',
+      message: 'В целом всё неплохо. Но не всё.Лососни тунца.',
+      name: 'Артем'
     }
-  )
+    ]
+  }
+  );
 }
 
 var pictureTemplate = document.querySelector('#picture').content;
@@ -48,24 +48,24 @@ bigScreen.querySelector('.social__caption').textContent = photoArr[0].descriptio
 document.querySelector('.social__comment-count').classList.add('hidden');
 document.querySelector('.comments-loader').classList.add('hidden');
 
-//Крестик
+// Крестик
 var closeBigScreen = function (evt) {
   if (evt.key === 'Escape' || evt.button === 0) {
     bigScreen.classList.add('hidden');
     document.querySelector('body').classList.toggle('modal-open');
-    closeButtonBigScreen.removeEventListener('click' , closeBigScreen);
-    document.removeEventListener('keydown' , closeBigScreen);
+    closeButtonBigScreen.removeEventListener('click', closeBigScreen);
+    document.removeEventListener('keydown', closeBigScreen);
   }
-}
+};
 
 var openBigScreen = function (evt) {
   if (evt.button === 0 || evt.key === 'Enter') {
     bigScreen.classList.remove('hidden');
     document.querySelector('body').classList.toggle('modal-open');
-    closeButtonBigScreen.addEventListener('click' , closeBigScreen);
-    document.addEventListener('keydown' , closeBigScreen);
+    closeButtonBigScreen.addEventListener('click', closeBigScreen);
+    document.addEventListener('keydown', closeBigScreen);
   }
-}
+};
 
 document.querySelector('.picture').addEventListener('click', openBigScreen);
 
@@ -94,7 +94,7 @@ var createComments = function () {
   }
 
   return commentBascket;
-}
+};
 
 var blockComment = document.querySelector('.social__comments');
 blockComment.append(createComments());
@@ -105,7 +105,7 @@ var uploadFile = document.querySelector('#upload-file');
 var filterPopup = document.querySelector('.img-upload__overlay');
 
 var openFilter = function () {
-  preview.style.transform = 'scale(' + parseInt(scaleValue.value) / 100 + ')';
+  preview.style.transform = 'scale(' + parseInt((scaleValue.value), 10) / 100 + ')';
   filterPopup.classList.remove('hidden');
   sliderBar.classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
@@ -115,16 +115,14 @@ var openFilter = function () {
 
 uploadFile.addEventListener('change', openFilter);
 
-
-
 // Закритиые фильтра
 var closeFilter = function (evt) {
   if (evt.key === 'Escape' || evt.button === 0) {
     filterPopup.classList.add('hidden');
-  document.querySelector('body').classList.remove('modal-open');
-  scaleValue.value = 55 + '%';
-  closeButtonFilter.removeEventListener('click', closeFilter);
-  document.removeEventListener('keydown', closeFilter);
+    document.querySelector('body').classList.remove('modal-open');
+    scaleValue.value = 55 + '%';
+    closeButtonFilter.removeEventListener('click', closeFilter);
+    document.removeEventListener('keydown', closeFilter);
   }
 };
 
@@ -139,24 +137,24 @@ var preview = document.querySelector('.img-upload__preview img');
 
 scaleLowSize.addEventListener('click', function () {
 
-  if (parseInt(scaleValue.value) >= 50) {
-    scaleValue.value = (parseInt(scaleValue.value) - 25) + '%';
+  if (parseInt((scaleValue.value), 10) >= 50) {
+    scaleValue.value = (parseInt((scaleValue.value), 10) - 25) + '%';
   } else {
     scaleValue.value = 25 + '%';
   }
 
-  preview.style.transform = 'scale(' + parseInt(scaleValue.value) / 100 + ')';
+  preview.style.transform = 'scale(' + parseInt((scaleValue.value), 10) / 100 + ')';
 });
 
 scaleBigSize.addEventListener('click', function () {
 
-  if (parseInt(scaleValue.value) <= 75) {
-    scaleValue.value = (parseInt(scaleValue.value) + 25) + '%';
+  if (parseInt((scaleValue.value), 10) <= 75) {
+    scaleValue.value = (parseInt((scaleValue.value), 10) + 25) + '%';
   } else {
     scaleValue.value = 100 + '%';
   }
 
-  preview.style.transform = 'scale(' + parseInt(scaleValue.value) / 100 + ')';
+  preview.style.transform = 'scale(' + parseInt((scaleValue.value), 10) / 100 + ')';
 });
 
 // Работа с фильтрами
@@ -166,7 +164,7 @@ var effectRadio = document.querySelectorAll('.effects__radio');
 var sliderBar = document.querySelector('.img-upload__effect-level');
 var sliderLine = document.querySelector('.effect-level__line');
 
-effectRadio.forEach( function (item) {
+effectRadio.forEach(function (item) {
   item.addEventListener('click', function (evt) {
     if (evt.target.value === 'none') {
       sliderBar.classList.add('hidden');
